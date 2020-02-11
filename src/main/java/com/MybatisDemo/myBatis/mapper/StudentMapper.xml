@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.MybatisDemo.myBatis.mapper.StudentMapper">
+
+<resultMap id="studentResultMap" type="com.MybatisDemo.myBatis.model.Student">
+<id column="id" property="id"></id>
+<result column="name" property="name"></result>
+<result column="passportNo" property="passportNo"></result>
+</resultMap> 
+
+	<select id="findAll" resultMap="studentResultMap">
+		select id, name, passportNo from Student
+	</select>
+	
+	<insert id="addStudent" parameterType="com.MybatisDemo.myBatis.model.Student">
+	insert into Student(id,name,passportNo) values (#{id},#{name},#{passportNo});
+	</insert> 
+	
+	<delete id="deleteStu">
+	delete from Student where id= #{id}
+	</delete>
+	
+	<select id="getOne"  resultMap="studentResultMap">
+	select * from Student where id=#{id} 
+	</select>
+</mapper>
